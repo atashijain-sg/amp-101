@@ -7,11 +7,24 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap');
         
+        :root {
+            /* Golden Hour palette */
+            --c-bg-start: #F9E9BE;
+            --c-bg-end: #FAD4A3;
+            --c-surface: #FFFFFF;
+            --c-primary: #E8B54C;
+            --c-primary-dark: #B08326;
+            --c-accent: #40817A;
+            --c-text: #3A2C1C;
+            --c-text-light: #FFFFFF;
+            --c-text-muted: #666;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #FFD700, #FFA500, #FF6347);
+            background: linear-gradient(135deg, var(--c-bg-start), var(--c-bg-end));
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
@@ -36,11 +49,11 @@
             animation: float 6s ease-in-out infinite;
         }
         
-        .doodle:nth-child(1) { background: #FFB6C1; top: 10%; left: 15%; animation-delay: 0s; }
-        .doodle:nth-child(2) { background: #98FB98; top: 20%; left: 80%; animation-delay: 1s; }
-        .doodle:nth-child(3) { background: #87CEEB; top: 60%; left: 10%; animation-delay: 2s; }
-        .doodle:nth-child(4) { background: #DDA0DD; top: 80%; left: 75%; animation-delay: 3s; }
-        .doodle:nth-child(5) { background: #F0E68C; top: 40%; left: 50%; animation-delay: 4s; }
+        .doodle:nth-child(1) { background: color-mix(in srgb, var(--c-primary) 25%, white); top: 10%; left: 15%; animation-delay: 0s; }
+        .doodle:nth-child(2) { background: color-mix(in srgb, var(--c-accent) 25%, white); top: 20%; left: 80%; animation-delay: 1s; }
+        .doodle:nth-child(3) { background: color-mix(in srgb, var(--c-primary-dark) 25%, white); top: 60%; left: 10%; animation-delay: 2s; }
+        .doodle:nth-child(4) { background: color-mix(in srgb, var(--c-accent) 35%, white); top: 80%; left: 75%; animation-delay: 3s; }
+        .doodle:nth-child(5) { background: color-mix(in srgb, var(--c-primary) 30%, white); top: 40%; left: 50%; animation-delay: 4s; }
         
         @keyframes float {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
@@ -63,13 +76,13 @@
             padding: 40px;
             margin-bottom: 30px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border: 2px solid rgba(255, 215, 0, 0.3);
+            border: 2px solid color-mix(in srgb, var(--c-primary) 30%, transparent);
         }
         
         h1 {
             font-family: 'Pacifico', cursive;
             font-size: 3.5em;
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1);
+            background: linear-gradient(45deg, var(--c-primary), var(--c-accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
@@ -78,7 +91,7 @@
         
         .subtitle {
             font-size: 1.4em;
-            color: #666;
+            color: var(--c-text-muted);
             margin-top: 15px;
             font-weight: 300;
         }
@@ -109,7 +122,7 @@
             width: 100%;
             height: 250px;
             object-fit: cover;
-            border-bottom: 3px solid #FFD700;
+            border-bottom: 3px solid var(--c-primary);
         }
         
         .card-content {
@@ -118,13 +131,13 @@
         
         .card-title {
             font-size: 1.5em;
-            color: #333;
+            color: var(--c-text);
             margin: 0 0 10px 0;
             font-weight: 600;
         }
         
         .card-description {
-            color: #777;
+            color: var(--c-text-muted);
             line-height: 1.6;
             font-size: 1.1em;
         }
@@ -138,7 +151,7 @@
         }
         
         canvas {
-            border: 3px dashed #FFD700;
+            border: 3px dashed var(--c-primary);
             border-radius: 15px;
             cursor: crosshair;
             background: white;
@@ -149,11 +162,11 @@
         }
         
         .btn {
-            background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+            background: linear-gradient(45deg, var(--c-primary), var(--c-accent));
             border: none;
             padding: 12px 25px;
             border-radius: 25px;
-            color: white;
+            color: var(--c-text-light);
             font-weight: 600;
             cursor: pointer;
             margin: 0 10px;
@@ -168,7 +181,7 @@
         .paw-prints {
             position: absolute;
             font-size: 24px;
-            color: rgba(255, 215, 0, 0.4);
+            color: color-mix(in srgb, var(--c-primary) 40%, transparent);
             animation: pawFloat 8s ease-in-out infinite;
         }
         
@@ -252,9 +265,9 @@
         const canvas = document.getElementById('drawingCanvas');
         const ctx = canvas.getContext('2d');
         let isDrawing = false;
-        let currentColor = '#FF6B6B';
+        let currentColor = '#E8B54C';
         
-        const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#FFB6C1'];
+        const colors = ['#E8B54C', '#40817A', '#B08326', '#D4C077', '#5A9B94', '#F2D98D', '#6B9C98'];
         let colorIndex = 0;
         
         // Responsive canvas
